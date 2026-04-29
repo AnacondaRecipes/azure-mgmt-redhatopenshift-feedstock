@@ -26,7 +26,7 @@ requirements:
     - azure-mgmt-core >=1.6.0
     - typing_extensions >=4.6.0
 
-tests:
+test:
   imports:
     - azure.mgmt.redhatopenshift
     - azure.mgmt.redhatopenshift.aio
