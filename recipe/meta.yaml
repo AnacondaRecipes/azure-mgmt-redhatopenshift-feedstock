@@ -1,0 +1,50 @@
+{% set name = "azure-mgmt-redhatopenshift" %}
+{% set version = "3.0.0" %} 
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: 4775c9bdf363238834da145e5f59f97683ab04f8ddbd250de45d45e33798327f
+
+build:
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
+
+requirements:
+  host:
+    - setuptools >=77.0.3
+    - wheel
+    - python
+    - pip
+  run:
+    - python
+    - isodate >=0.6.1
+    - azure-mgmt-core >=1.6.0
+    - typing_extensions >=4.6.0
+
+test:
+  imports:
+    - azure.mgmt.redhatopenshift
+    - azure.mgmt.redhatopenshift.aio
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/Azure/azure-sdk-for-python
+  summary: Microsoft Azure Red Hat Openshift Management Client Library for Python
+  license: MIT
+  license_file: LICENSE
+  license_family: MIT
+  description: Microsoft Azure Red Hat Openshift Management Client Library for Python
+  dev_url: https://github.com/Azure/azure-sdk-for-python
+  doc_url: https://github.com/Azure/azure-sdk-for-python
+
+extra:
+  recipe-maintainers:
+    - janjagusch
